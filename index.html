@@ -47,13 +47,20 @@ h1{
 }
 
 #drop-area{
-    background:#20242c;
+    background:#1f232b;
     border:1px solid #353b48;
-    border-radius:16px;
-    padding:45px 20px;
+    border-radius:14px;
+    padding:35px 20px;
     text-align:center;
     cursor:pointer;
-    transition:all .25s ease;
+    transition:.25s ease;
+    min-height:220px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
 }
 
 #drop-area:hover{
@@ -128,6 +135,53 @@ button:hover{
     font-size:17px;
     color:#e5e5e5;
     margin:10px 0;
+}
+
+    #drop-area h2{
+    margin:0;
+}
+
+.upload-text{
+    margin:0;
+    line-height:1.5;
+}
+
+#drop-area span{
+    margin:0;
+    line-height:1.5;
+}
+
+    @media (max-width:600px){
+
+.container{
+    padding:18px;
+}
+
+h1{
+    font-size:26px;
+}
+
+#drop-area{
+    min-height:250px;
+    padding:30px 18px;
+}
+
+.icon{
+    font-size:42px;
+}
+
+#drop-area h2{
+    font-size:22px;
+}
+
+.upload-text{
+    font-size:16px;
+}
+
+#drop-area span{
+    font-size:14px;
+}
+
 }
     
 </style>
