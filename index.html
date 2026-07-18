@@ -118,14 +118,33 @@ border:2px solid #ffc107;
 }
 
 button{
-margin-top:20px;
-padding:12px 20px;
-border:none;
-background:#ffc107;
-color:#111;
-font-weight:bold;
-border-radius:8px;
-cursor:pointer;
+    margin-top:20px;
+    padding:14px 26px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+    color:#111;
+    background:linear-gradient(135deg,#FFD54F,#FFC107);
+    transition:all .3s ease;
+    box-shadow:0 8px 20px rgba(255,193,7,.30);
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(255,193,7,.45);
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
 }
 
 button:hover{
