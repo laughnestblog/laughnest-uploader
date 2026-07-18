@@ -176,12 +176,24 @@ async function uploadImage() {
       download.innerText = "Copy HTML";
       download.disabled = false;
 
-      download.onclick = () => {
+      const html = `<img src="${result.secure_url}" alt="LaughNest Image" loading="lazy" style="max-width:100%;height:auto;">`;
+
+navigator.clipboard.writeText(html);
+
+download.innerText = "✅ HTML Auto Copied";
+
+      download.onclick = async () => {
     const html = `<img src="${result.secure_url}" alt="LaughNest Image" loading="lazy" style="max-width:100%;height:auto;">`;
 
-    navigator.clipboard.writeText(html);
+    await navigator.clipboard.writeText(html);
 
-    alert("✅ HTML Code Copied!\n\nAb Blogger ke HTML View me sirf Ctrl + V kar do.");
+    download.innerText = "✅ HTML Copied";
+    download.style.background = "#28a745";
+
+    setTimeout(() => {
+        download.innerText = "Copy HTML";
+        download.style.background = "";
+    }, 2000);
 };
     } else {
       alert("Upload failed!");
