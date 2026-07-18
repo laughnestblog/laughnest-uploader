@@ -177,9 +177,12 @@ async function uploadImage() {
       download.disabled = false;
 
       download.onclick = () => {
-        navigator.clipboard.writeText(result.secure_url);
-        alert("Image URL copied!\n\n" + result.secure_url);
-      };
+    const html = `<img src="${result.secure_url}" alt="LaughNest Image" loading="lazy" style="max-width:100%;height:auto;">`;
+
+    navigator.clipboard.writeText(html);
+
+    alert("✅ HTML Code Copied!\n\nAb Blogger ke HTML View me sirf Ctrl + V kar do.");
+};
     } else {
       alert("Upload failed!");
       console.log(result);
