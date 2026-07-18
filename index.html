@@ -156,7 +156,7 @@ async function uploadImage() {
   // Cloudinary Upload
   const data = new FormData();
   data.append("file", f);
-  data.append("upload_preset", UPLOAD_PRESET);
+  data.append("upload_preset", "laughnest");
 
   download.innerText = "Uploading...";
   download.disabled = true;
