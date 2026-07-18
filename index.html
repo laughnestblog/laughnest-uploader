@@ -133,39 +133,63 @@ background:#ffdb4d;
 </div>
 
 <script>
+const CLOUD_NAME = "fyu5xouf";
+const UPLOAD_PRESET = "laughnest";
 
-const file=document.getElementById("file");
+const file = document.getElementById("file");
+const area = document.getElementById("drop-area");
+const preview = document.getElementById("preview");
+const image = document.getElementById("image");
+const download = document.getElementById("download");
 
-const area=document.getElementById("drop-area");
+area.onclick = () => file.click();
+file.onchange = uploadImage;
 
-const preview=document.getElementById("preview");
+async function uploadImage() {
+  const f = file.files[0];
+  if (!f) return;
 
-const image=document.getElementById("image");
+  // Preview
+  image.src = URL.createObjectURL(f);
+  preview.style.display = "block";
 
-area.onclick=()=>file.click();
+  // Cloudinary Upload
+  const data = new FormData();
+  data.append("file", f);
+  data.append("upload_preset", UPLOAD_PRESET);
 
-file.onchange=loadImage;
+  download.innerText = "Uploading...";
+  download.disabled = true;
 
-function loadImage(){
+  try {
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      {
+        method: "POST",
+        body: data
+      }
+    );
 
-const f=file.files[0];
+    const result = await res.json();
 
-if(!f)return;
+    if (result.secure_url) {
+      download.innerText = "Copy Image URL";
+      download.disabled = false;
 
-const reader=new FileReader();
+      download.onclick = () => {
+        navigator.clipboard.writeText(result.secure_url);
+        alert("Image URL copied!\n\n" + result.secure_url);
+      };
+    } else {
+      alert("Upload failed!");
+      console.log(result);
+    }
 
-reader.onload=e=>{
-
-image.src=e.target.result;
-
-preview.style.display="block";
-
+  } catch (err) {
+    alert("Error uploading image.");
+    console.error(err);
+  }
 }
-
-reader.readAsDataURL(f);
-
-}
-
 </script>
 
 </body>
